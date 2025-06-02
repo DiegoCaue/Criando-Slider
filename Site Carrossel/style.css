@@ -4,10 +4,16 @@
     box-sizing: border-box;
 }
  body {
-    background-color: #e5e5e5;
+    background-color: #232222;
     overflow: hidden;
 
+
  }
+
+ .Imagem-portfolio3 {
+    height: 68vh;
+ }
+
 
  main {
     display: flex;
@@ -18,7 +24,8 @@
 
 .container {
     width: 100%;
-    height: var(--heigth);
+    height: var(--height);
+    mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
 }
 
 .carrossel {
@@ -29,17 +36,32 @@
 
 .item {
     width: var(--width);;
-    height: var(--heigth);
+    height: var(--height);
     position: absolute;
     left: 100%;
     animation: autoRun 10s linear infinite;
-    animation-delay: var(--delay);
+    animation-delay: calc((10 / var(--quantity)) * var(--delay));
     cursor: pointer;
 
 }
 
+.container.reverse .item{
+       animation: reverseRun 10s linear infinite;
+       animation-delay: calc((10 / var(--quantity)) * var(--delay))
+}
+
 .item img {
     width: 100%;
+}
+
+.container:hover .item {
+    animation-play-state: paused;
+    filter: grayscale(1);
+
+}
+
+.container .item:hover {
+    filter: grayscale(0);
 }
 
 @keyframes autoRun {
@@ -51,3 +73,14 @@
         left: -50px;
     }
 }
+
+@keyframes reverseRun {
+    from {
+        left: -200px;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
